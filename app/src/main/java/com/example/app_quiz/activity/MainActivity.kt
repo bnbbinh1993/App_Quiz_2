@@ -1,23 +1,22 @@
 package com.example.app_quiz.activity
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.app_quiz.R
 import com.example.app_quiz.adapters.QuizAdapter
 import com.example.app_quiz.models.Quiz
 import com.google.android.material.datepicker.MaterialDatePicker
-import com.google.firebase.firestore.CollectionReference
-import com.google.firebase.firestore.EventListener
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_main.*
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.collections.*;
 
 class MainActivity : AppCompatActivity() {
     lateinit var actionBarDrawerToggle: ActionBarDrawerToggle
@@ -63,10 +62,10 @@ class MainActivity : AppCompatActivity() {
     private fun setUpDatePicker() {
         bntDatePicker.setOnClickListener{
             val datePicker = MaterialDatePicker.Builder.datePicker().build() // bạn có thể thiết lập bộ chọn ngày của mình .
-            datePicker.show(supportFragmentManager,"DatePicker")
+            datePicker.show(supportFragmentManager, "DatePicker")
             //The supplied listener is called when the user confirms a valid selection.
             datePicker.addOnPositiveButtonClickListener {
-                Log.d("DATEPICKER",datePicker.headerText)
+                Log.d("DATEPICKER", datePicker.headerText)
                 val dateFormatter = SimpleDateFormat("dd-mm-yyyy")
                 val date = dateFormatter.format(Date(it))
 
@@ -77,19 +76,63 @@ class MainActivity : AppCompatActivity() {
 
             //The supplied listener is called when the user clicks the cancel button
             datePicker.addOnNegativeButtonClickListener{
-                Log.d("DATEPICKER",datePicker.headerText)
+                Log.d("DATEPICKER", datePicker.headerText)
 
             }
 
             //The supplied listener is called when the user cancels the picker via back button or a touch outside the view.
 
             datePicker.addOnCancelListener{
-                Log.d("DATEPICKER","Date picker Cancelled")
+                Log.d("DATEPICKER", "Date picker Cancelled")
             }
         }
     }
 
     private fun setUpFireStore() {
+
+//        val firebaseRespond =FirebaseRespond()
+//        if(firebaseRespond.getUser()==null){
+//            firebaseRespond.createUser().addOnCompleteListener{
+//                if(it.isSuccessful){
+//                    loadPostData()
+//                }
+//                else{
+//
+//                }
+//            }
+//        }
+//        //used logged in
+//        else{
+//           loadPostData()
+//        }
+//        val firebaseAuth : FirebaseAuth= FirebaseAuth.getInstance()
+//        val rootRef = FirebaseFirestore.getInstance()
+       // val applicationsRef = rootRef.collection("quizz")
+      //  val applicationIdRef = applicationsRef.document()
+        //applicationIdRef.get().addOnCompleteListener { task: Task<DocumentSnapshot?> ->
+          //  if (task.isSuccessful) {
+            //    val document = task.result
+              //  if (document!!.exists()) {
+                //    val users = document!!["aa"] as List<Map<String, Any>>?
+             //   }
+           // }
+        //}
+
+//        val docRef = FirebaseFirestore.getInstance().collection("quiz").document("aa")
+//        docRef.get()
+//                .addOnSuccessListener { document ->
+//                    Log.d("check","check document ${document.data}")
+//                    Log.d("DATA", document?.toObject(Quiz::class.java).toString())
+//                    quizList.clear()
+//
+//                    for (document : document.toObject(Quiz::class.java))
+//                    adapter.notifyDataSetChanged()
+//                }
+//                .addOnFailureListener {
+//                    Log.d("check ","check error $it")
+//                }
+
+
 
         // còn cái này nữa b ê
         // h bạn muốn hiểu nó ntn
@@ -97,21 +140,47 @@ class MainActivity : AppCompatActivity() {
         /*
 
          */
-        fireStore = FirebaseFirestore.getInstance()  // dòng này là để khởi tạo cho firebase
-        val collectionReference = fireStore.collection("quizzes")
-        // nếu chạy lệnh này :fireStore.collection("quizzes").document().collection("abc") thì nó sẽ ra như trên firebase
-        // doạn này là  đường dẫn
-        collectionReference.addSnapshotListener { value, error -> // lấy dữ liệu từ firebase- mặc định hở b?  code nó thế
-            // mà dữ liệu chõ nào thế, t cuxg k rõ value vs error đâu ra
+//        fireStore = FirebaseFirestore.getInstance()  // dòng này là để khởi tạo cho firebase
+//        val docRef = fireStore.collection("quiz").document("aa")
+//        docRef.addSnapshotListener { snapshot, e ->
+//            if (e != null) {
+//                Log.w("exits", "Listen failed.", e)
+//                return@addSnapshotListener
+//            }
+//
+//            if (snapshot != null && snapshot.exists()) {
+//                Log.d("exits", "Current data: ${snapshot.data}")
+//            } else {
+//                Log.d("exits", "Current data: null")
+//            }
+//            Log.d("DATA", snapshot?.toObject(Quiz::class.java).toString())
+//            quizList.clear()
+//
+//            //quizList.addAll(snapshot.get("quizz", Quiz::class.java))
+//            adapter.notifyDataSetChanged()
+        //}
+
+//    private fun loadPostData() {
+//
+//    }
+
+
+        /*
+        đây c ơi, chỗ này bị lỗi này, t k hiểu sao lỗi, debug nó báo null ở đây này
+         */
+        fireStore = FirebaseFirestore.getInstance() // firebase: null
+        val collectionReference = fireStore.collection("quiz")
+
+        collectionReference.addSnapshotListener { value, error ->
+
             if (value == null || error != null) {
                 Toast.makeText(this, "Error fetching data", Toast.LENGTH_SHORT).show()
                 return@addSnapshotListener
             }
 
-
-            //Log.d("DATA", value.toObjects(Quiz::class.java).toString())
+            Log.d("DATA", value.toObjects(Quiz::class.java).toString());
             quizList.clear()
-            quizList.addAll(value.toObjects(Quiz::class.java))
+            quizList.addAll(value.toObjects(Quiz::class.java)) // vào đây thì debug ko chạy tiếp được nữa
             adapter.notifyDataSetChanged()
 
         }

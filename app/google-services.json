@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "374221770932",
-    "project_id": "app-quiz-683b3",
-    "storage_bucket": "app-quiz-683b3.appspot.com"
+    "project_number": "533474750413",
+    "project_id": "app-quiz-online",
+    "storage_bucket": "app-quiz-online.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:374221770932:android:176142b27f8509eed387e1",
+        "mobilesdk_app_id": "1:533474750413:android:5a832176b53ff2ecf69e84",
         "android_client_info": {
           "package_name": "com.example.app_quiz"
         }
       },
       "oauth_client": [
         {
-          "client_id": "374221770932-m9nvf1ei0kunhukgtj5i90fcj4nvurbg.apps.googleusercontent.com",
+          "client_id": "533474750413-kepisk2u6me6suhcl4hebeplrk63uqil.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBNlfoZYzQql2zGcwwUBaa1Khq99F2L3sY"
+          "current_key": "AIzaSyAdOe0Wxi3Vwz8fTqxBu4fEwMtTG_QHjm8"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "374221770932-m9nvf1ei0kunhukgtj5i90fcj4nvurbg.apps.googleusercontent.com",
+              "client_id": "533474750413-kepisk2u6me6suhcl4hebeplrk63uqil.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

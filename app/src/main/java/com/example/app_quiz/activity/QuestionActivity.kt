@@ -45,7 +45,7 @@ class QuestionActivity : AppCompatActivity() {
         val firestore = FirebaseFirestore.getInstance()
 //        val date = intent.getStringExtra("DATE")
         //if(date != null){
-            firestore.collection("quizzes").whereEqualTo("title","basic question")
+            firestore.collection("quiz").whereEqualTo("title","basic questions")
                 .get()
                 .addOnSuccessListener {
                     if(it != null && !it.isEmpty){
@@ -58,18 +58,18 @@ class QuestionActivity : AppCompatActivity() {
         // chỗ này là để lấy dữ liệu à -- ừ t lên gg
        // } // lỗi này nữa này
         //Nhận tất cả tài liệu trong một bộ sưu tập su dung dieu kien where
-       firestore.collection("quizzes")
-           .whereEqualTo("title","average questions")
-           .get()
-           .addOnSuccessListener {
-               if(it != null && !it.isEmpty){
-                   quizzes = it.toObjects(Quiz::class.java)
-                   questions = quizzes!![0].questions
-
-                   bindViews()
-
-               }
-           }
+//       firestore.collection("quizzes")
+//           .whereEqualTo("title","average questions")
+//           .get()
+//           .addOnSuccessListener {
+//               if(it != null && !it.isEmpty){
+//                   quizzes = it.toObjects(Quiz::class.java)
+//                   questions = quizzes!![0].questions
+//
+//                   bindViews()
+//
+//               }
+//           }
 
     }
 

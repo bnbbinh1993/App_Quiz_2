@@ -15,7 +15,7 @@ class SigupActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sigup)
-        firebaseAuth = FirebaseAuth.getInstance();
+        firebaseAuth = FirebaseAuth.getInstance()
 //        btnSigUp1.setOnClickListener{
 //            this.sigUpUser()
 //        }
